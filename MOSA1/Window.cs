@@ -21,6 +21,8 @@ namespace MOSA1
         public bool Visible = true;
         public bool NoBar = false;
 
+        public bool HasAnimation = false;
+
         public void Update()
         {
             if (!Visible)
@@ -84,7 +86,10 @@ namespace MOSA1
                 InputUpdate();
             }
 
-            System.Graphics.DrawFilledRectangle(0xFFFFFFFF, X, Y, Width, Height);
+            if (!HasAnimation) 
+            {
+                System.Graphics.DrawFilledRectangle(0xFFFFFFFF, X, Y, Width, Height);
+            }
 
             if (System.ActiveWindowIndex == System.Windows.GetWindowIndex(this))
             {
@@ -103,6 +108,11 @@ namespace MOSA1
 
         public virtual void InputUpdate()
         {
+        }
+
+        public virtual void SetVisible(bool Visible) 
+        {
+            this.Visible = Visible;
         }
 
         public void Exit()

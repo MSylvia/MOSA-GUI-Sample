@@ -43,7 +43,7 @@ namespace MOSA1.Apps
             {
                 if(PS2Mouse.Btn == "Left" && VolConT > 15) 
                 {
-                    VolumeController.Visible = !VolumeController.Visible;
+                    VolumeController.SetVisible(!VolumeController.Visible);
                     VolConT = 0;
                 }
             }

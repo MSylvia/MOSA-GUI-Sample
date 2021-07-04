@@ -1,4 +1,5 @@
-﻿using MOSA1.Driver;
+﻿using MOSA1.Drawing;
+using MOSA1.Driver;
 using System;
 
 namespace MOSA1.Apps
@@ -8,6 +9,7 @@ namespace MOSA1.Apps
         public VolumeController()
         {
             Title = "VolumeController";
+            HasAnimation = true;
         }
 
         int Precent = 100;
@@ -36,10 +38,34 @@ namespace MOSA1.Apps
             }
         }
 
+        bool ShowAnimFinished = false;
+        int T = 0;
+
         public override void UIUpdate()
         {
+            //Before UIUpdate Will ResetLimit
+
+            if (!ShowAnimFinished) 
+            {
+                T += 10;
+                System.Graphics.SetLimit(X, Y + Height - T, Width + 1, T);
+                if(T + 10 > Height) 
+                {
+                    ShowAnimFinished = true;
+                }
+            }
+
             System.Graphics.DrawFilledRectangle(0xFFFFFF, X, Y, Width, Height);
             System.Graphics.DrawFilledRectangle(0x313131, X, Y + Height - ((Height * Precent) / 100), Width, (Height*Precent)/100);
+
+            //After UIUpdate Will ResetLimit
+        }
+
+        public override void SetVisible(bool Visible)
+        {
+            ShowAnimFinished = false;
+            T = 0;
+            base.SetVisible(Visible);
         }
     }
 }

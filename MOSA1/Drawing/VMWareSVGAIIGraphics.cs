@@ -1,4 +1,5 @@
 ﻿using Mosa.External;
+using Mosa.Runtime.x86;
 
 namespace MOSA1.Drawing
 {
@@ -27,18 +28,18 @@ namespace MOSA1.Drawing
 
         public override void DrawPoint(uint Color, int X, int Y)
         {
-            if (X > LimitX && X < LimitX + LimitWidth && Y > LimitY && Y < LimitY + LimitHeight)
+            if (X >= LimitX && X <= LimitX + LimitWidth && Y > LimitY && Y < LimitY + LimitHeight)
             {
                 vMWareSVGAII.Video_Memory.Write32((uint)(FrameSize + ((Width * Y + X) * Bpp)), Color);
             }
         }
 
-        public override void Update()
+        public unsafe override void Update()
         {
             uint addr = vMWareSVGAII.Video_Memory.Address.ToUInt32();
             for (int i = 0; i < FrameSize; i++)
             {
-                vMWareSVGAII.Video_Memory.Write8((uint)i, vMWareSVGAII.Video_Memory.Read8((uint)(FrameSize + i)));
+                Native.Set8((uint)(addr + i), Native.Get8((uint)(addr + FrameSize + i)));
             }
             vMWareSVGAII.Update();
         }
