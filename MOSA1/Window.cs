@@ -79,6 +79,10 @@ namespace MOSA1
                 //Hide
                 System.Graphics.DrawFilledRectangle(0x313131, X + Width - BarHeight, Y - BarHeight, BarHeight, BarHeight);
             }
+            else 
+            {
+                InputUpdate();
+            }
 
             System.Graphics.DrawFilledRectangle(0xFFFFFFFF, X, Y, Width, Height);
 

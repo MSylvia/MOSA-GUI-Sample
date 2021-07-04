@@ -88,12 +88,12 @@ namespace MOSA1.Apps
 
         private void ProcessCommand()
         {
-            switch (Command)
+            switch (Command.ToUpper())
             {
-                case "About":
+                case "ABOUT":
                     Content += "Powered by Managed Operating System Alliance Project Ver:2.0.0.141. This demo made by nifanfa!\n";
                     break;
-                case "Snake":
+                case "SNAKE":
                     Content += "Launched \"Snake\"\n";
                     System.Windows.Add(new Snake() { X = 400, Y = 50, Width = 150, Height = 150 });
                     break;
@@ -110,16 +110,16 @@ namespace MOSA1.Apps
                 }
                 break;
                 */
-                case "Play":
-                    //SoundBlaster16.Play();
+                case "PLAY":
+                    SoundBlaster16.Play(SoundBlaster16.Error);
                     break;
-                case "Clear":
+                case "CLEAR":
                     Content = "";
                     break;
                 case "FPS":
                     ContinuableCommand = "FPS";
                     break;
-                case "Get Free Memory":
+                case "GET FREE MEMORY":
                     Content += (PageFrameAllocator.TotalPages - PageFrameAllocator.TotalPagesInUse) * PageFrameAllocator.PageSize / (1024 * 1024) + "MB\n";
                     break;
                 default:
