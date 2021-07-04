@@ -111,7 +111,7 @@ namespace MOSA1.Apps
                 break;
                 */
                 case "PLAY":
-                    SoundBlaster16.Play(SoundBlaster16.Error);
+                    SoundBlaster16.Play(SoundBlaster16.Info);
                     break;
                 case "CLEAR":
                     Content = "";

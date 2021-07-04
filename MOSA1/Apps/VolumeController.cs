@@ -12,8 +12,12 @@ namespace MOSA1.Apps
 
         int Precent = 100;
 
+        int w = 0;
+
         public override void InputUpdate()
         {
+            w++;
+
             if (PS2Mouse.X > this.X && PS2Mouse.X < this.X + this.Width && PS2Mouse.Y > this.Y&&PS2Mouse.Y< this.Y + Height) 
             {
                 if(PS2Mouse.Btn == "Left") 
@@ -22,6 +26,12 @@ namespace MOSA1.Apps
 
                     //0x0 -> 0xF
                     SoundBlaster16.SetSoundVolume(Math.Clamp((byte)(Precent / 6), (byte)0xC, (byte)0xF));
+
+                    if (w > 10)
+                    {
+                        SoundBlaster16.Play(SoundBlaster16.Info);
+                        w = 0;
+                    }
                 }
             }
         }

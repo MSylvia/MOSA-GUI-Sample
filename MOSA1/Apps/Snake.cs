@@ -212,7 +212,7 @@ namespace MOSA1.Apps
                         {
                             NewGame();
                             MessageBox.Visible = true;
-                            SoundBlaster16.Play(SoundBlaster16.Error);
+                            SoundBlaster16.Play(SoundBlaster16.Info);
                         }
                     }
                 }
