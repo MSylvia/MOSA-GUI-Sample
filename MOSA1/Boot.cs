@@ -1,6 +1,7 @@
 ﻿// Copyright (c) MOSA Project. Licensed under the New BSD License.
 
 using Mosa.External;
+using Mosa.External.x86;
 using Mosa.Kernel.x86;
 using Mosa.Runtime;
 using Mosa.Runtime.x86;
