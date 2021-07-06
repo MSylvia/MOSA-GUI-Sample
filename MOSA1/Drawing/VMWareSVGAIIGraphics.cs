@@ -1,5 +1,6 @@
 ﻿using Mosa.External;
 using Mosa.Runtime.x86;
+using System;
 
 namespace MOSA1.Drawing
 {
@@ -13,17 +14,6 @@ namespace MOSA1.Drawing
             vMWareSVGAII.SetMode((uint)Width, (uint)Height);
             base.Width = Width;
             base.Height = Height;
-        }
-
-        public override void DrawFilledRectangle(uint Color, int X, int Y, int Width, int Height)
-        {
-            for (int h = 0; h < Height; h++)
-            {
-                for (int w = 0; w < Width; w++)
-                {
-                    DrawPoint(Color, X + w, Y + h);
-                }
-            }
         }
 
         public override void DrawPoint(uint Color, int X, int Y)
@@ -46,21 +36,12 @@ namespace MOSA1.Drawing
 
         public override void Clear(uint Color)
         {
+            throw new NotImplementedException();
         }
 
         public override void Disable()
         {
             vMWareSVGAII.Disable();
-        }
-
-        public override void DrawRectangle(uint Color, int X, int Y, int Width, int Height, int Weight)
-        {
-            DrawFilledRectangle(Color, X, Y, Width, Weight);
-
-            DrawFilledRectangle(Color, X, Y, Weight, Height);
-            DrawFilledRectangle(Color, X + (Width - Weight), Y, Weight, Height);
-
-            DrawFilledRectangle(Color, X, Y + (Height - Weight), Width, Weight);
         }
     }
 }

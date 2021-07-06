@@ -20,8 +20,25 @@
         public int LimitWidth;
         public int LimitHeight;
 
-        public abstract void DrawFilledRectangle(uint Color, int X, int Y, int Width, int Height);
-        public abstract void DrawRectangle(uint Color, int X, int Y, int Width, int Height, int Weight);
+        public virtual void DrawFilledRectangle(uint Color, int X, int Y, int Width, int Height) 
+        {
+            for (int h = 0; h < Height; h++)
+            {
+                for (int w = 0; w < Width; w++)
+                {
+                    DrawPoint(Color, X + w, Y + h);
+                }
+            }
+        }
+        public virtual void DrawRectangle(uint Color, int X, int Y, int Width, int Height, int Weight) 
+        {
+            DrawFilledRectangle(Color, X, Y, Width, Weight);
+
+            DrawFilledRectangle(Color, X, Y, Weight, Height);
+            DrawFilledRectangle(Color, X + (Width - Weight), Y, Weight, Height);
+
+            DrawFilledRectangle(Color, X, Y + (Height - Weight), Width, Weight);
+        }
         public abstract void DrawPoint(uint Color, int X, int Y);
         public abstract void Update();
         public abstract void Clear(uint Color);
