@@ -44,8 +44,10 @@ namespace MOSA1
 
         public System()
         {
-            //Graphics = new VMWareSVGAIIGraphics(Boot.ScreenWidth, Boot.ScreenHeight);
-            Graphics = new VBEGraphics();
+            //For VMWareSVGAII
+            Graphics = new VMWareSVGAIIGraphics(Boot.ScreenWidth, Boot.ScreenHeight);
+            //For VBE
+            //Graphics = new VBEGraphics();
 
             CpuStructure = new CpuStructure();
             random = new Random();
