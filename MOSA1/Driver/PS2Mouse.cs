@@ -49,7 +49,7 @@ namespace MOSA1.Driver
             Btn = "";
 
 
-            Boot.Console.WriteLine("PS/2 Mouse Enabled");
+            Console.WriteLine("PS/2 Mouse Enabled");
         }
 
         private static int Phase = 0;

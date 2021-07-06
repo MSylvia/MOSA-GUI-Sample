@@ -12,7 +12,6 @@ namespace MOSA1
 {
     public static class Boot
     {
-        public static ConsoleSession Console;
         //For VMWareSVGAII
         public static int ScreenWidth = 640;
         public static int ScreenHeight = 480;
@@ -38,7 +37,6 @@ namespace MOSA1
         {
             Kernel.Setup();
 
-            Console = ConsoleManager.Controller.Boot;
             Console.Clear();
 
             IDT.SetInterruptHandler(ProcessInterrupt);

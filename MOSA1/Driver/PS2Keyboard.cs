@@ -12,7 +12,7 @@ namespace MOSA1.Driver
             KData = new byte[4];
 
 
-            Boot.Console.WriteLine("PS/2 Keyboard Enabled");
+            Console.WriteLine("PS/2 Keyboard Enabled");
         }
 
         static bool b = false;

@@ -39,11 +39,11 @@ namespace MOSA1.Driver
 
             if (R == 0xAA)
             {
-                Boot.Console.WriteLine("Sound Blaster 16 Found");
+                Console.WriteLine("Sound Blaster 16 Found");
             }
             else
             {
-                Boot.Console.WriteLine("Sound Blaster 16 Not Found");
+                Console.WriteLine("Sound Blaster 16 Not Found");
             }
 
             //Turn Speaker ON
