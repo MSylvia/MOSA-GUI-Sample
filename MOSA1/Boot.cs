@@ -13,8 +13,22 @@ namespace MOSA1
     public static class Boot
     {
         public static ConsoleSession Console;
-        public static int ScreenWidth = 640;
-        public static int ScreenHeight = 480;
+        //public static int ScreenWidth = 640;
+        //public static int ScreenHeight = 480;
+        public static int ScreenWidth 
+        {
+            get 
+            {
+                return VBE.ScreenWidth;
+            }
+        }
+        public static int ScreenHeight 
+        {
+            get 
+            {
+                return VBE.ScreenHeight;
+            }
+        }
 
         public static void Main()
         {
