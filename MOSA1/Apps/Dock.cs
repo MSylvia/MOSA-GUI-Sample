@@ -1,4 +1,5 @@
-﻿using Mosa.Kernel.x86;
+﻿using Mosa.External.x86.Drawing;
+using Mosa.Kernel.x86;
 using MOSA1.Drawing;
 using MOSA1.Driver;
 

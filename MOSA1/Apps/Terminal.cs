@@ -91,7 +91,7 @@ namespace MOSA1.Apps
             switch (Command.ToUpper())
             {
                 case "ABOUT":
-                    Content += "Powered by Managed Operating System Alliance Project Ver:2.0.0.141. This Demo Was Made By nifanfa! And Thanks To Phil Garcia!\n";
+                    Content += "Based on MOSA-Core. This Demo Was Made By nifanfa!\n";
                     break;
                 case "SNAKE":
                     Content += "Launched \"Snake\"\n";

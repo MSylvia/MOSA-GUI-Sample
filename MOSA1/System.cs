@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using MOSA1.Apps;
 using MOSA1.Driver;
+using Mosa.External.x86.Drawing;
 
 namespace MOSA1
 {
@@ -45,9 +46,9 @@ namespace MOSA1
         public System()
         {
             //For VMWareSVGAII
-            Graphics = new VMWareSVGAIIGraphics(Boot.ScreenWidth, Boot.ScreenHeight);
+            //Graphics = new VMWareSVGAIIGraphics(Boot.ScreenWidth, Boot.ScreenHeight);
             //For VBE
-            //Graphics = new VBEGraphics();
+            Graphics = new VBEGraphics();
 
             CpuStructure = new CpuStructure();
             random = new Random();
