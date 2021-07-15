@@ -14,10 +14,11 @@ namespace MOSA1
     public static class Boot
     {
         //For VMWareSVGAII
-        //public static int ScreenWidth = 640;
-        //public static int ScreenHeight = 480;
+        public static int ScreenWidth = 640;
+        public static int ScreenHeight = 480;
 
         //For VBE
+        /*
         public static int ScreenWidth 
         {
             get 
@@ -32,6 +33,7 @@ namespace MOSA1
                 return VBE.ScreenHeight;
             }
         }
+        */
 
         public static void Main()
         {
@@ -56,8 +58,8 @@ namespace MOSA1
             {
                 try
                 {
-
                     system.Run();
+                    Native.Hlt();
                 }
                 catch (Exception E)
                 {
