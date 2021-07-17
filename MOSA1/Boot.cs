@@ -43,8 +43,6 @@ namespace MOSA1
 
             IDT.SetInterruptHandler(ProcessInterrupt);
 
-            PCI.Setup();
-
             PS2Keyboard.Initialize();
             PS2Mouse.Initialize(ScreenWidth, ScreenHeight);
 

@@ -59,27 +59,10 @@ namespace MOSA1
             Windows.Add(new Terminal() { X = 20, Y = 80, Width = 300, Height = 200 });
         }
 
-        public static int Devide = 20;
-
         public void Run()
         {
             Graphics.DrawFilledRectangle(0x2B001D, 0, 0, Boot.ScreenWidth, Boot.ScreenHeight);
             MosaLogo.Draw(Graphics, 10);
-
-            for(int i = 0; i < Windows.Count; i++) 
-            {
-                int _X = Devide;
-                int _Y = Devide + (i * (Windows[i].defaultIcon.Height + Devide));
-                string _T = Windows[i].Title;
-                if(_T.Length * ASCII.FontWidth > Windows[i].defaultIcon.Width) 
-                {
-                    _T = Windows[i].Title.Substring(0, Windows[i].defaultIcon.Width / ASCII.FontWidth);
-                }
-                Graphics.DrawImage(Windows[i].defaultIcon, _X, _Y, -16777216);
-                Graphics.DrawACS16(0xFFFFFFFF, _T, _X, _Y + Windows[i].defaultIcon.Height);
-                Windows[i].X_Desktop = _X;
-                Windows[i].Y_Desktop = _Y;
-            }
 
             /*
             Graphics.DrawACS16(0xFFFFFFFF, "Managed Operating System Alliance Project Ver:2.0.0.141", 10, 10);
