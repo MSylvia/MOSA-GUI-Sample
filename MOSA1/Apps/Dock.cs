@@ -2,6 +2,7 @@
 using Mosa.Kernel.x86;
 using MOSA1.Drawing;
 using MOSA1.Driver;
+using System.Drawing;
 
 namespace MOSA1.Apps
 {
