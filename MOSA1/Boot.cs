@@ -14,11 +14,11 @@ namespace MOSA1
     public static class Boot
     {
         //For VMWareSVGAII
-        public static int ScreenWidth = 640;
-        public static int ScreenHeight = 480;
+        public static int ScreenWidth = 800;
+        public static int ScreenHeight = 600;
 
         //For VBE
-        /*
+        /* If we use vbe so we can run this demo on real hardware
         public static int ScreenWidth 
         {
             get 
