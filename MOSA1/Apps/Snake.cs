@@ -1,4 +1,5 @@
-﻿using MOSA1.Driver;
+﻿using Mosa.Kernel.x86;
+using MOSA1.Driver;
 using System;
 
 namespace MOSA1.Apps
@@ -38,7 +39,7 @@ namespace MOSA1.Apps
         {
             Title = "Snake";
 
-            MessageBox = new MessageBox() { Visible = false, Info = "Game Over!",Width =150,Height = 16,X = 300,Y = 350 };
+            MessageBox = new MessageBox() { Visible = false, Info = "Game Over!", Width = 150, Height = 16, X = 300, Y = 350 };
 
             System.Windows.Add(MessageBox);
 
@@ -94,16 +95,15 @@ namespace MOSA1.Apps
             }
         }
 
-        int W = 0;
+        ulong W = 0;
 
         private void Control()
         {
-            if (W < 15)
+            if (PIT.Tick < W + 50)
             {
-                W++;
                 return;
             }
-            W = 0;
+            W = PIT.Tick;
 
             switch (Dir)
             {
