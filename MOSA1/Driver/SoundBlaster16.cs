@@ -1,7 +1,6 @@
 ﻿using Mosa.Kernel.x86;
 using Mosa.Runtime;
 using Mosa.Runtime.x86;
-using System;
 
 namespace MOSA1.Driver
 {

@@ -99,7 +99,7 @@ namespace MOSA1.Apps
 
         private void Control()
         {
-            if (PIT.Tick < W + 50)
+            if (PIT.Tick < W + 200)
             {
                 return;
             }

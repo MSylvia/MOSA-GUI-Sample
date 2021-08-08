@@ -1,11 +1,7 @@
-﻿using Mosa.Kernel.x86.Smbios;
-using MOSA1.Drawing;
-using System;
-using System.Collections.Generic;
+﻿using Mosa.External.x86.Drawing;
 using MOSA1.Apps;
 using MOSA1.Driver;
-using Mosa.External.x86.Drawing;
-using Mosa.External.x86.Drawing.Fonts;
+using System.Collections.Generic;
 
 namespace MOSA1
 {
@@ -36,10 +32,8 @@ namespace MOSA1
             0,0,0,0,0,0,0,1,2,2,1,0,
             0,0,0,0,0,0,0,0,1,1,0,0
         };
-        CpuStructure CpuStructure;
         public static string Log = "";
         public static List<Window> Windows;
-        Random random;
 
         public static bool IsMovingWindow = false;
         public static int ActiveWindowIndex = -1;
@@ -47,12 +41,9 @@ namespace MOSA1
         public System()
         {
             //For VMWareSVGAII
-            Graphics = new VMWareSVGAIIGraphics(Boot.ScreenWidth, Boot.ScreenHeight);
+            //Graphics = new VMWareSVGAIIGraphics(Boot.ScreenWidth, Boot.ScreenHeight);
             //For VBE
-            //Graphics = new VBEGraphics();
-
-            CpuStructure = new CpuStructure();
-            random = new Random();
+            Graphics = new VBEGraphics();
 
             Windows = new List<Window>();
             Windows.Add(new Dock() { X = 0, Y = Boot.ScreenHeight - 30, Width = Boot.ScreenWidth, Height = 30, NoBar = true });

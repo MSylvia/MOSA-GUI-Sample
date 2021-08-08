@@ -1,5 +1,4 @@
-﻿using Mosa.External;
-using Mosa.Kernel.x86;
+﻿using Mosa.Kernel.x86;
 using MOSA1.Drawing;
 using MOSA1.Driver;
 using System.Collections.Generic;
@@ -22,6 +21,8 @@ namespace MOSA1.Apps
             Title = "Terminal";
 
             s = new List<string>();
+
+            DontDrawBackground = true;
 
             New();
         }
@@ -128,11 +129,13 @@ namespace MOSA1.Apps
             }
         }
 
-        public void New() 
+        public void New()
         {
             Content += ">";
         }
 
+
+        private const int rad = 10;
         public override void UIUpdate()
         {
             MaxLine = Height / ASCII.FontHeight;
@@ -148,7 +151,8 @@ namespace MOSA1.Apps
 
             //Content = PS2Keyboard.KData[1].ToString("X2");
 
-            System.Graphics.DrawFilledRectangle(0x5B264D, X, Y, Width, Height);
+            System.Graphics.DrawFilledRoundedRectangle(0x5B264D, X, Y, Width, Height, rad);
+            System.Graphics.DrawFilledRectangle(0x5B264D, X, Y, Width, rad);
 
             s.Clear();
 

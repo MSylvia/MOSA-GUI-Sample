@@ -1,9 +1,6 @@
 ﻿// Copyright (c) MOSA Project. Licensed under the New BSD License.
 
-using Mosa.External;
-using Mosa.External.x86;
 using Mosa.Kernel.x86;
-using Mosa.Runtime;
 using Mosa.Runtime.x86;
 using MOSA1.Drawing;
 using MOSA1.Driver;
@@ -14,26 +11,25 @@ namespace MOSA1
     public static class Boot
     {
         //For VMWareSVGAII
-        public static int ScreenWidth = 800;
-        public static int ScreenHeight = 600;
+        //public static int ScreenWidth = 800;
+        //public static int ScreenHeight = 600;
 
         //For VBE
-        /* If we use vbe so we can run this demo on real hardware
-        public static int ScreenWidth 
+        //If we use vbe so we can run this demo on real hardware
+        public static int ScreenWidth
         {
-            get 
+            get
             {
                 return VBE.ScreenWidth;
             }
         }
-        public static int ScreenHeight 
+        public static int ScreenHeight
         {
-            get 
+            get
             {
                 return VBE.ScreenHeight;
             }
         }
-        */
 
         public static void Main()
         {

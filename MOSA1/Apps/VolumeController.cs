@@ -1,5 +1,4 @@
-﻿using MOSA1.Drawing;
-using MOSA1.Driver;
+﻿using MOSA1.Driver;
 using System;
 
 namespace MOSA1.Apps
@@ -9,7 +8,6 @@ namespace MOSA1.Apps
         public VolumeController()
         {
             Title = "VolumeController";
-            HasAnimation = true;
         }
 
         int Precent = 100;
@@ -20,11 +18,11 @@ namespace MOSA1.Apps
         {
             w++;
 
-            if (PS2Mouse.X > this.X && PS2Mouse.X < this.X + this.Width && PS2Mouse.Y > this.Y&&PS2Mouse.Y< this.Y + Height) 
+            if (PS2Mouse.X > this.X && PS2Mouse.X < this.X + this.Width && PS2Mouse.Y > this.Y && PS2Mouse.Y < this.Y + Height)
             {
-                if(PS2Mouse.Btn == "Left") 
+                if (PS2Mouse.Btn == "Left")
                 {
-                    Precent = (int)((int)100-(((PS2Mouse.Y - (double)this.Y) / Height) * 100));
+                    Precent = (int)((int)100 - (((PS2Mouse.Y - (double)this.Y) / Height) * 100));
 
                     //0x0 -> 0xF
                     SoundBlaster16.SetSoundVolume(Math.Clamp((byte)(Precent / 6), (byte)0xC, (byte)0xF));
@@ -41,7 +39,7 @@ namespace MOSA1.Apps
         public override void UIUpdate()
         {
             System.Graphics.DrawFilledRectangle(0xFFFFFF, X, Y, Width, Height);
-            System.Graphics.DrawFilledRectangle(0x313131, X, Y + Height - ((Height * Precent) / 100), Width, (Height*Precent)/100);
+            System.Graphics.DrawFilledRectangle(0x313131, X, Y + Height - ((Height * Precent) / 100), Width, (Height * Precent) / 100);
 
             //After UIUpdate Will ResetLimit
         }
