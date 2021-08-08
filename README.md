@@ -1,5 +1,6 @@
 # MOSA-GUI-Sample Please Read It!
 ![image](https://github.com/nifanfa/MOSA-GUI-Sample/blob/master/QQ%E6%88%AA%E5%9B%BE20210708001155.png)  
+# If you enable VBE you can run this operating system on your real hardware easily
 # Commands:  
 ### About (Get About Info)
 ### Snake (Launch Snake Game)
