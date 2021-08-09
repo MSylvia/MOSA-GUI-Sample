@@ -1,4 +1,5 @@
-﻿using MOSA1.Core;
+﻿using MOSA1.Apps;
+using MOSA1.Core;
 using MOSA1.Drawing;
 using MOSA1.Driver;
 using System;
@@ -65,7 +66,7 @@ namespace MOSA1
                 if (Move)
                 {
                     this.X = Math.Clamp(PS2Mouse.X - OffsetX, 0, Boot.ScreenWidth - Width - 1);
-                    this.Y = Math.Clamp(PS2Mouse.Y - OffsetY, BarHeight, Boot.ScreenHeight - Height - 1);
+                    this.Y = Math.Clamp(PS2Mouse.Y - OffsetY, BarHeight, Boot.ScreenHeight - Height - 0 - Dock.DockHeight);
                 }
 
                 System.Graphics.SetLimit(X, Y - BarHeight, Width, BarHeight + Height);
@@ -90,7 +91,7 @@ namespace MOSA1
                 InputUpdate();
             }
 
-            if(!DontDrawBackground) System.Graphics.DrawFilledRectangle(0xFFFFFFFF, X, Y, Width, Height);
+            if (!DontDrawBackground) System.Graphics.DrawFilledRectangle(0xFFFFFFFF, X, Y, Width, Height);
 
             if (System.ActiveWindowIndex == System.Windows.GetWindowIndex(this))
             {
