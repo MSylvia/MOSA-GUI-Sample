@@ -39,12 +39,9 @@ namespace MOSA1.Apps
                     case PS2Keyboard.KeyCode.Delete:
                         if (ContinuableCommand == "")
                         {
-                            if (Content.Length != 0)
-                            {
-                                Content = Content.Substring(0, Content.Length - 1);
-                            }
                             if (Command.Length != 0)
                             {
+                                Content = Content.Substring(0, Content.Length - 1);
                                 Command = Command.Substring(0, Command.Length - 1);
                             }
                         }
@@ -94,7 +91,7 @@ namespace MOSA1.Apps
                     break;
                 case "SNAKE":
                     Content += "Launched \"Snake\"\n";
-                    System.Windows.Add(new Snake() { X = 400, Y = 50, Width = 150, Height = 150 });
+                    System.Windows.Add(new Snake() { X = 600, Y = 100, Width = 150, Height = 150 });
                     break;
                 /*
             case "List PCI Devices":
@@ -134,6 +131,8 @@ namespace MOSA1.Apps
 
         public override void UIUpdate()
         {
+            System.Graphics.DrawFilledRectangle(0x5B264D, X, Y, Width, Height);
+
             MaxLine = Height / ASCII.FontHeight;
 
             if (W < 60)

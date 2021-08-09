@@ -57,6 +57,8 @@ namespace MOSA1
                 }
                 catch (Exception E)
                 {
+                    System.Graphics.DrawACS16(0xFFFFFFFF, E.Message, 10, 10);
+                    System.Graphics.Update();
                     System.Graphics.Disable();
                     Console.Write(E.Message);
                     for (; ; )

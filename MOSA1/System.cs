@@ -47,7 +47,7 @@ namespace MOSA1
 
             Windows = new List<Window>();
             Windows.Add(new Dock() { X = 0, Y = Boot.ScreenHeight - 30, Width = Boot.ScreenWidth, NoBar = true });
-            Windows.Add(new Terminal() { X = 20, Y = 80, Width = 500, Height = 400 });
+            Windows.Add(new Terminal() { X = 50, Y = 80, Width = 500, Height = 400 });
         }
 
         public void Run()
