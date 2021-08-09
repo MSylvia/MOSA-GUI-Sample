@@ -26,8 +26,6 @@ namespace MOSA1
         public int X_Desktop;
         public int Y_Desktop;
 
-        public bool DontDrawBackground = false;
-
         public void Update()
         {
             if (!Visible)
@@ -91,7 +89,7 @@ namespace MOSA1
                 InputUpdate();
             }
 
-            if (!DontDrawBackground) System.Graphics.DrawFilledRectangle(0xFFFFFFFF, X, Y, Width, Height);
+            System.Graphics.DrawFilledRectangle(0xFFFFFFFF, X, Y, Width, Height);
 
             if (System.ActiveWindowIndex == System.Windows.GetWindowIndex(this))
             {

@@ -22,8 +22,6 @@ namespace MOSA1.Apps
 
             s = new List<string>();
 
-            DontDrawBackground = true;
-
             New();
         }
 
@@ -134,8 +132,6 @@ namespace MOSA1.Apps
             Content += ">";
         }
 
-
-        private const int rad = 10;
         public override void UIUpdate()
         {
             MaxLine = Height / ASCII.FontHeight;
@@ -148,11 +144,6 @@ namespace MOSA1.Apps
             {
                 W = 0;
             }
-
-            //Content = PS2Keyboard.KData[1].ToString("X2");
-
-            System.Graphics.DrawFilledRoundedRectangle(0x5B264D, X, Y, Width, Height, rad);
-            System.Graphics.DrawFilledRectangle(0x5B264D, X, Y, Width, rad);
 
             s.Clear();
 
