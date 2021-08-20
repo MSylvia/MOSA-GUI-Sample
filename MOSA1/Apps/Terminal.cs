@@ -133,7 +133,7 @@ namespace MOSA1.Apps
         {
             System.Graphics.DrawFilledRectangle(0x5B264D, X, Y, Width, Height);
 
-            MaxLine = Height / ASCII.FontHeight;
+            MaxLine = Height / 16;
 
             if (W < 60)
             {
@@ -170,7 +170,7 @@ namespace MOSA1.Apps
             int i = 0;
             foreach (var v in aContent)
             {
-                if (i < ((Width - ASCII.FontWidth) / ASCII.FontWidth) && v != '\n')
+                if (v != '\n')
                 {
                     i++;
                     l += v;
