@@ -107,7 +107,7 @@ namespace MOSA1.Apps
                 break;
                 */
                 case "PLAY":
-                    SoundBlaster16.Play(SoundBlaster16.Info);
+                    Content += "Sound Blaster Not Available Anymore\n";
                     break;
                 case "CLEAR":
                     Content = "";
@@ -201,7 +201,7 @@ namespace MOSA1.Apps
             int k = 0;
             foreach (var v in s)
             {
-                System.Graphics.DrawACS16(0xFFFFFFFF, v, X + 0, Y + k * ASCII.FontHeight);
+                System.Graphics.DrawBitFontString("ArialCustomCharset16", 0xFFFFFFFF, v, X + 0, Y + k * ASCII.FontHeight);
                 k++;
             }
         }

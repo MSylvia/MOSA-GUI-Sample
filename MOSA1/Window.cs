@@ -72,14 +72,7 @@ namespace MOSA1
                 //Bar
                 System.Graphics.DrawFilledRectangle(0x73206C, X, Y - BarHeight, Width - BarHeight, BarHeight);
 
-                if (System.ActiveWindowIndex == System.Windows.GetWindowIndex(this))
-                {
-                    System.Graphics.DrawACS16(0xFFFFFFFF, "(Active)" + Title, X + (BarHeight / 2) - (16 / 2), Y - BarHeight + (BarHeight / 2) - (16 / 2));
-                }
-                else
-                {
-                    System.Graphics.DrawACS16(0xFFFFFFFF, Title, X + (BarHeight / 2) - (16 / 2), Y - BarHeight + (BarHeight / 2) - (16 / 2));
-                }
+                System.Graphics.DrawBitFontString("ArialCustomCharset16", 0xFFFFFFFF, System.ActiveWindowIndex == System.Windows.GetWindowIndex(this) ?"(Active)":""+ Title, X + (BarHeight / 2) - (16 / 2), Y - BarHeight + (BarHeight / 2) - (16 / 2));
 
                 //Hide
                 System.Graphics.DrawFilledRectangle(0x313131, X + Width - BarHeight, Y - BarHeight, BarHeight, BarHeight);

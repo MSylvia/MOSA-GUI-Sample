@@ -44,8 +44,6 @@ namespace MOSA1
 
             ASCII.Setup();
 
-            SoundBlaster16.Initialize();
-
             System system = new System();
 
             for (; ; )

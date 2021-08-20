@@ -214,7 +214,6 @@ namespace MOSA1.Apps
                             MessageBox.X = this.X + 50;
                             MessageBox.Y = this.Y + 50;
                             MessageBox.Visible = true;
-                            SoundBlaster16.Play(SoundBlaster16.Info);
                         }
                     }
                 }
