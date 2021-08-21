@@ -68,8 +68,9 @@ namespace MOSA1.Apps
             }
 
             Refresh();
-            if (!MessageBox.Visible)
+            if(!MessageBox.Actived)
             {
+                MessageBox.Visible = false;
                 Control();
             }
 
@@ -214,6 +215,7 @@ namespace MOSA1.Apps
                             MessageBox.X = this.X + 50;
                             MessageBox.Y = this.Y + 50;
                             MessageBox.Visible = true;
+                            MessageBox.Active();
                         }
                     }
                 }

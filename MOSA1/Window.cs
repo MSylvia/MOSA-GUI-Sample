@@ -26,6 +26,19 @@ namespace MOSA1
         public int X_Desktop;
         public int Y_Desktop;
 
+        public bool Actived 
+        {
+            get 
+            {
+                return System.ActiveWindowIndex == System.Windows.GetWindowIndex(this);
+            }
+        }
+
+        public void Active()
+        {
+            System.ActiveWindowIndex = System.Windows.GetWindowIndex(this);
+        }
+
         public void Update()
         {
             if (!Visible)
@@ -49,11 +62,6 @@ namespace MOSA1
                         //
                         System.ActiveWindowIndex = System.Windows.GetWindowIndex(this);
                     }
-
-                    if (PS2Mouse.X > X + Width - BarHeight && PS2Mouse.X < X + Width && PS2Mouse.Y > Y - BarHeight && PS2Mouse.Y < Y && !Move)
-                    {
-                        this.Visible = false;
-                    }
                 }
                 else
                 {
@@ -70,12 +78,13 @@ namespace MOSA1
                 System.Graphics.SetLimit(X, Y - BarHeight, Width, BarHeight + Height);
 
                 //Bar
-                System.Graphics.DrawFilledRectangle(0x73206C, X, Y - BarHeight, Width - BarHeight, BarHeight);
+                System.Graphics.DrawFilledRectangle(0x73206C, X+0, (Y-BarHeight)+5, Width, BarHeight - 5);
+                System.Graphics.DrawFilledRoundedRectangle(0x73206C, X+0, (Y - BarHeight) + 0, Width, BarHeight, 5);
 
                 System.Graphics.DrawBitFontString("ArialCustomCharset16", 0xFFFFFFFF, System.ActiveWindowIndex == System.Windows.GetWindowIndex(this) ?"(Active)":""+ Title, X + (BarHeight / 2) - (16 / 2), Y - BarHeight + (BarHeight / 2) - (16 / 2));
 
                 //Hide
-                System.Graphics.DrawFilledRectangle(0x313131, X + Width - BarHeight, Y - BarHeight, BarHeight, BarHeight);
+                //System.Graphics.DrawFilledRectangle(0x313131, X + Width - BarHeight, Y - BarHeight, BarHeight, BarHeight);
             }
             else
             {
@@ -84,7 +93,7 @@ namespace MOSA1
 
             System.Graphics.DrawFilledRectangle(0xFFFFFFFF, X, Y, Width, Height);
 
-            if (System.ActiveWindowIndex == System.Windows.GetWindowIndex(this))
+            if (Actived)
             {
                 InputUpdate();
             }
