@@ -1,6 +1,6 @@
-﻿using Mosa.Kernel.x86;
+﻿using Mosa.External.x86.Driver;
+using Mosa.Kernel.x86;
 using MOSA1.Drawing;
-using MOSA1.Driver;
 using System.Collections.Generic;
 
 namespace MOSA1.Apps
@@ -30,7 +30,7 @@ namespace MOSA1.Apps
 
         public override void InputUpdate()
         {
-            if (PS2Keyboard.KeyAvailable())
+            if (PS2Keyboard.KeyAvailable)
             {
                 KeyCode = PS2Keyboard.GetKeyPressed();
 
@@ -64,13 +64,13 @@ namespace MOSA1.Apps
                         {
                             if (PS2Keyboard.IsCapsLock)
                             {
-                                Content += KeyCode.ToStr();
-                                Command += KeyCode.ToStr();
+                                Content += KeyCode.KeyCodeToString();
+                                Command += KeyCode.KeyCodeToString();
                             }
                             else
                             {
-                                Content += KeyCode.ToStr().ToLower();
-                                Command += KeyCode.ToStr().ToLower();
+                                Content += KeyCode.KeyCodeToString().ToLower();
+                                Command += KeyCode.KeyCodeToString().ToLower();
                             }
                         }
                         break;

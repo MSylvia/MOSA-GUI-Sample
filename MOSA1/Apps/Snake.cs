@@ -1,6 +1,6 @@
 ﻿using Mosa.Kernel.x86;
-using MOSA1.Driver;
 using System;
+using Mosa.External.x86.Driver;
 
 namespace MOSA1.Apps
 {

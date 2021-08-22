@@ -1,7 +1,7 @@
 ﻿using Mosa.External.x86.Drawing;
 using Mosa.External.x86.Drawing.Fonts;
+using Mosa.External.x86.Driver;
 using MOSA1.Apps;
-using MOSA1.Driver;
 using System.Collections.Generic;
 
 namespace MOSA1

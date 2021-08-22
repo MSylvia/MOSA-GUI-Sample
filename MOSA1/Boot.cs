@@ -3,7 +3,7 @@
 using Mosa.Kernel.x86;
 using Mosa.Runtime.x86;
 using MOSA1.Drawing;
-using MOSA1.Driver;
+using Mosa.External.x86.Driver;
 using System;
 
 namespace MOSA1

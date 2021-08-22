@@ -1,7 +1,7 @@
-﻿using MOSA1.Apps;
+﻿using Mosa.External.x86.Driver;
+using MOSA1.Apps;
 using MOSA1.Core;
 using MOSA1.Drawing;
-using MOSA1.Driver;
 using System;
 
 namespace MOSA1
