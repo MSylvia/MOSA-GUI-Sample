@@ -106,8 +106,12 @@ namespace MOSA1.Apps
                 }
                 break;
                 */
-                case "PLAY":
-                    Content += "Sound Blaster Not Available Anymore\n";
+                case "HELP":
+                    Content += "About (Get About Info)" + "\n";
+                    Content += "Snake (Launch Snake Game)" + "\n";
+                    Content += "Clear (Clear Console)" + "\n";
+                    Content += "FPS (Show FPS)" + "\n";
+                    Content += "Get Free Memory (Get Free Memory)" + "\n";
                     break;
                 case "CLEAR":
                     Content = "";
