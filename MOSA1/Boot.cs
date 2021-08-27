@@ -8,7 +8,7 @@ using System;
 
 namespace MOSA1
 {
-    public static class Boot
+    public static unsafe class Boot
     {
         //For VMWareSVGAII
         //public static int ScreenWidth = 800;
@@ -20,14 +20,14 @@ namespace MOSA1
         {
             get
             {
-                return VBE.ScreenWidth;
+                return VBE.VBEModeInfo->ScreenWidth;
             }
         }
         public static int ScreenHeight
         {
             get
             {
-                return VBE.ScreenHeight;
+                return VBE.VBEModeInfo->ScreenHeight;
             }
         }
 
