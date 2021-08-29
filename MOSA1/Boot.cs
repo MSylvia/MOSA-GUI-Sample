@@ -2,7 +2,6 @@
 
 using Mosa.Kernel.x86;
 using Mosa.Runtime.x86;
-using MOSA1.Drawing;
 using Mosa.External.x86.Driver;
 using System;
 
@@ -42,8 +41,6 @@ namespace MOSA1
             PS2Keyboard.Initialize();
             PS2Mouse.Initialize(ScreenWidth, ScreenHeight);
 
-            ASCII.Setup();
-
             System system = new System();
 
             for (; ; )
@@ -55,8 +52,6 @@ namespace MOSA1
                 }
                 catch (Exception E)
                 {
-                    System.Graphics.DrawACS16(0xFFFFFFFF, E.Message, 10, 10);
-                    System.Graphics.Update();
                     System.Graphics.Disable();
                     Console.Write(E.Message);
                     for (; ; )

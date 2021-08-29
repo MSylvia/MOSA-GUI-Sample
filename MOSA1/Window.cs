@@ -1,7 +1,6 @@
 ﻿using Mosa.External.x86.Drawing;
 using Mosa.External.x86.Driver;
 using MOSA1.Apps;
-using MOSA1.Core;
 using System;
 
 namespace MOSA1
@@ -32,13 +31,13 @@ namespace MOSA1
         {
             get
             {
-                return System.ActiveWindowIndex == System.Windows.GetWindowIndex(this);
+                return System.ActiveWindowIndex == System.Windows.IndexOf(this);
             }
         }
 
         public void Active()
         {
-            System.ActiveWindowIndex = System.Windows.GetWindowIndex(this);
+            System.ActiveWindowIndex = System.Windows.IndexOf(this);
         }
 
         public void Update()
@@ -62,7 +61,7 @@ namespace MOSA1
                         OffsetY = PS2Mouse.Y - Y;
 
                         //
-                        System.ActiveWindowIndex = System.Windows.GetWindowIndex(this);
+                        System.ActiveWindowIndex = System.Windows.IndexOf(this);
                     }
                 }
                 else
@@ -82,7 +81,7 @@ namespace MOSA1
                 //Bar
                 //0x5B264D
 
-                if(System.ActiveWindowIndex == System.Windows.GetWindowIndex(this))
+                if(Actived)
                 {
                     System.Graphics.DrawFilledRectangle(0x73206C, X + 0, (Y - BarHeight) + 5, Width, BarHeight - 5);
                     System.Graphics.DrawFilledRoundedRectangle(0x73206C, X + 0, (Y - BarHeight) + 0, Width, BarHeight, 5);
