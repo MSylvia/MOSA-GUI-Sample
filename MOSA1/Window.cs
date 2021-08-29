@@ -72,7 +72,7 @@ namespace MOSA1
 
                 if (Move)
                 {
-                    this.X = Math.Clamp(PS2Mouse.X - OffsetX, 0, Boot.ScreenWidth - Width - 1);
+                    this.X = Math.Clamp(PS2Mouse.X - OffsetX, 0, Boot.ScreenWidth - Width);
                     this.Y = Math.Clamp(PS2Mouse.Y - OffsetY, BarHeight, Boot.ScreenHeight - Height - 0 - Dock.DockHeight);
                 }
 
