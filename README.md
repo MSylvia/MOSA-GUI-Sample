@@ -1,5 +1,5 @@
 ## MOSA-GUI-Sample Please Read It!
-![image](https://github.com/nifanfa/MOSA-GUI-Sample/blob/master/VirtualBox_MOSA_29_08_2021_22_42_22.png)  
+![image](https://github.com/nifanfa/MOSA-GUI-Sample/blob/master/VirtualBox_MOSA_29_08_2021_22_52_35.png)  
 ## If you enable VBE you can run this operating system on your real hardware easily
 ## ***AMD Graphics Card Won't Work For Some Unknown Reason***
 ## Commands:  
