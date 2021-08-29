@@ -1,7 +1,7 @@
-﻿using Mosa.External.x86.Driver;
+﻿using Mosa.External.x86.Drawing;
+using Mosa.External.x86.Driver;
 using MOSA1.Apps;
 using MOSA1.Core;
-using MOSA1.Drawing;
 using System;
 
 namespace MOSA1
@@ -26,9 +26,11 @@ namespace MOSA1
         public int X_Desktop;
         public int Y_Desktop;
 
-        public bool Actived 
+        public static VirtualGraphics virtualGraphics;
+
+        public bool Actived
         {
-            get 
+            get
             {
                 return System.ActiveWindowIndex == System.Windows.GetWindowIndex(this);
             }
@@ -78,10 +80,19 @@ namespace MOSA1
                 System.Graphics.SetLimit(X, Y - BarHeight, Width, BarHeight + Height);
 
                 //Bar
-                System.Graphics.DrawFilledRectangle(0x73206C, X+0, (Y-BarHeight)+5, Width, BarHeight - 5);
-                System.Graphics.DrawFilledRoundedRectangle(0x73206C, X+0, (Y - BarHeight) + 0, Width, BarHeight, 5);
+                //0x5B264D
 
-                System.Graphics.DrawBitFontString("ArialCustomCharset16", 0xFFFFFFFF, System.ActiveWindowIndex == System.Windows.GetWindowIndex(this) ?"(Active)":""+ Title, X + (BarHeight / 2) - (16 / 2), Y - BarHeight + (BarHeight / 2) - (16 / 2));
+                if(System.ActiveWindowIndex == System.Windows.GetWindowIndex(this))
+                {
+                    System.Graphics.DrawFilledRectangle(0x73206C, X + 0, (Y - BarHeight) + 5, Width, BarHeight - 5);
+                    System.Graphics.DrawFilledRoundedRectangle(0x73206C, X + 0, (Y - BarHeight) + 0, Width, BarHeight, 5);
+                }
+                else 
+                {
+                    System.Graphics.DrawFilledRectangle(0x5B264D, X + 0, (Y - BarHeight) + 5, Width, BarHeight - 5);
+                    System.Graphics.DrawFilledRoundedRectangle(0x5B264D, X + 0, (Y - BarHeight) + 0, Width, BarHeight, 5);
+                }
+                System.Graphics.DrawBitFontString("宋体CustomCharset16", 0xFFFFFFFF, Title, X + (BarHeight / 2) - (16 / 2), Y - BarHeight + (BarHeight / 2) - (16 / 2));
 
                 //Hide
                 //System.Graphics.DrawFilledRectangle(0x313131, X + Width - BarHeight, Y - BarHeight, BarHeight, BarHeight);

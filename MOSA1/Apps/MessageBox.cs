@@ -11,7 +11,7 @@
 
         public override void UIUpdate()
         {
-            System.Graphics.DrawBitFontString("ArialCustomCharset16", 0x0, Info, X, Y);
+            System.Graphics.DrawBitFontString("宋体CustomCharset16", 0x0, Info, X, Y);
         }
     }
 }

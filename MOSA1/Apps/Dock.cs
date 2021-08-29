@@ -21,7 +21,7 @@ namespace MOSA1.Apps
         {
             System.Graphics.DrawFilledRectangle(0x313131, X, Y, Width, Height);
             s = CMOS.Hour.ToString() + ":" + CMOS.Minute.ToString().PadLeft(2, '0');
-            System.Graphics.DrawBitFontString("ArialCustomCharset16", 0xFFFFFFFF, s, Width - BitFont.Calculate("ArialCustomCharset16", s) - Height, Y + (Height / 2 - 8));
+            System.Graphics.DrawBitFontString("宋体CustomCharset16", 0xFFFFFFFF, s, Width - BitFont.Calculate("宋体CustomCharset16", s) - Height, Y + (Height / 2 - 8));
         }
     }
 }

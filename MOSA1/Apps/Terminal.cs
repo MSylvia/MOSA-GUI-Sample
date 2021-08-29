@@ -1,7 +1,6 @@
 ﻿using Mosa.External.x86.Driver;
 using Mosa.Kernel.x86;
-using MOSA1.Drawing;
-using System.Collections.Generic;
+using Mosa.Runtime.x86;
 
 namespace MOSA1.Apps
 {
@@ -13,19 +12,11 @@ namespace MOSA1.Apps
 
         public string Command = "";
 
-        List<string> s;
-        int MaxLine = 0;
-
         public Terminal()
         {
             Title = "Terminal";
-
-            s = new List<string>();
-
-            New();
         }
 
-        int W = 0;
         PS2Keyboard.KeyCode KeyCode;
 
         public override void InputUpdate()
@@ -39,17 +30,17 @@ namespace MOSA1.Apps
                     case PS2Keyboard.KeyCode.Delete:
                         if (ContinuableCommand == "")
                         {
-                            if (Command.Length != 0)
-                            {
-                                Content = Content.Substring(0, Content.Length - 1);
-                                Command = Command.Substring(0, Command.Length - 1);
-                            }
+                            Command = "";
+
+                            CursorX = 0;
+                            virtualGraphics.DrawFilledRectangle(0x5B264D, CursorX, CursorY, Width, 16);
+                            New();
                         }
                         break;
                     case PS2Keyboard.KeyCode.Enter:
                         if (ContinuableCommand == "")
                         {
-                            Content += "\n";
+                            WriteLine();
                             ProcessCommand();
                             Command = "";
 
@@ -58,18 +49,20 @@ namespace MOSA1.Apps
                         break;
                     case PS2Keyboard.KeyCode.ESC:
                         ContinuableCommand = "";
+                        WriteLine();
+                        New();
                         break;
                     default:
                         if (ContinuableCommand == "")
                         {
                             if (PS2Keyboard.IsCapsLock)
                             {
-                                Content += KeyCode.KeyCodeToString();
+                                Write(KeyCode.KeyCodeToString());
                                 Command += KeyCode.KeyCodeToString();
                             }
                             else
                             {
-                                Content += KeyCode.KeyCodeToString().ToLower();
+                                Write(KeyCode.KeyCodeToString().ToLower());
                                 Command += KeyCode.KeyCodeToString().ToLower();
                             }
                         }
@@ -80,134 +73,106 @@ namespace MOSA1.Apps
 
 
         string ContinuableCommand = "";
-        string ContinuableCommandOutput = "";
+
+        public int CursorX = 0;
+        public int CursorY = 0;
+
+        public void Write(string s)
+        {
+            if (CursorY + 16 > Height)
+            {
+                CursorY -= 16;
+                ASM.MEMCPY(virtualGraphics.VideoMemoryCacheAddr, (uint)(virtualGraphics.VideoMemoryCacheAddr + (16 * Width * 4)), (uint)(Width * (Height - 16) * 4));
+                virtualGraphics.DrawFilledRectangle(0x5B264D, 0, Height - 16, Width, 16);
+            }
+
+            if (virtualGraphics == null) return;
+            CursorX += virtualGraphics.DrawBitFontString("宋体CustomCharset16", 0xFFFFFFFF, s, CursorX, CursorY);
+            if (CursorX > Width)
+            {
+                CursorX = 0;
+                CursorY += 16;
+            }
+        }
+
+        public void WriteLine(string s)
+        {
+            Write(s);
+            CursorX = 0;
+            CursorY += 16;
+        }
+
+        public void WriteLine()
+        {
+            CursorX = 0;
+            CursorY += 16;
+        }
 
         private void ProcessCommand()
         {
             switch (Command.ToUpper())
             {
                 case "ABOUT":
-                    Content += "Based on MOSA-Core. This Demo Was Made By nifanfa!\n";
+                    WriteLine(@"  __  __                 ");
+                    WriteLine(@" |  \/  |                ");
+                    WriteLine(@" | \  | | ___  ___  ___ ");
+                    WriteLine(@" | |\/| |/ _ \/ __|/ _` |");
+                    WriteLine(@" | |  | | (_) \__ \ (_| |");
+                    WriteLine(@" |_|  |_|\___/|___/\__,_|");
+                    WriteLine("Based on MOSA-Core. This Demo Was Made By nifanfa!");
                     break;
                 case "SNAKE":
-                    Content += "Launched \"Snake\"\n";
+                    WriteLine("Launched \"Snake\"");
                     System.Windows.Add(new Snake() { X = 600, Y = 100, Width = 150, Height = 150 });
                     break;
-                /*
-            case "List PCI Devices":
-                ushort Last = 0;
-                foreach (var v in PCI.Devices)
-                {
-                    if(Last != v.VendorID)
-                    {
-                        Content += "VendorID:0x" + v.VendorID.ToString("X2") + "\n";
-                    }
-                    Last = v.VendorID;
-                }
-                break;
-                */
                 case "HELP":
-                    Content += "About (Get About Info)" + "\n";
-                    Content += "Snake (Launch Snake Game)" + "\n";
-                    Content += "Clear (Clear Console)" + "\n";
-                    Content += "FPS (Show FPS)" + "\n";
-                    Content += "Get Free Memory (Get Free Memory)" + "\n";
+                    WriteLine("About (Get About Info)");
+                    WriteLine("Snake (Launch Snake Game)");
+                    WriteLine("Clear (Clear Console)");
+                    WriteLine("FPS (Show FPS)");
+                    WriteLine("Get Free Memory (Get Free Memory)");
                     break;
                 case "CLEAR":
-                    Content = "";
+                    CursorX = 0;
+                    CursorY = 0;
+                    virtualGraphics.DrawFilledRectangle(0x5B264D, 0, 0, Width, Height);
                     break;
                 case "FPS":
                     ContinuableCommand = "FPS";
                     break;
                 case "GET FREE MEMORY":
-                    Content += (PageFrameAllocator.TotalPages - PageFrameAllocator.TotalPagesInUse) * PageFrameAllocator.PageSize / (1024 * 1024) + "MB\n";
+                    WriteLine($"{(PageFrameAllocator.TotalPages - PageFrameAllocator.TotalPagesInUse) * PageFrameAllocator.PageSize / (1024 * 1024)}MB");
                     break;
                 default:
-                    Content += "Bad Command\n";
+                    WriteLine("Bad Command");
                     break;
             }
         }
 
         public void New()
         {
-            Content += ">";
+            Write(">");
         }
 
         public override void UIUpdate()
         {
-            System.Graphics.DrawFilledRectangle(0x5B264D, X, Y, Width, Height);
-
-            MaxLine = Height / 16;
-
-            if (W < 60)
+            if (virtualGraphics == null)
             {
-                W++;
+                virtualGraphics = new Mosa.External.x86.Drawing.VirtualGraphics(this.Width, this.Height);
+                virtualGraphics.DrawFilledRectangle(0x5B264D, 0, 0, Width, Height);
+                New();
             }
-            else
-            {
-                W = 0;
-            }
-
-            s.Clear();
 
             switch (ContinuableCommand)
             {
                 case "FPS":
-                    ContinuableCommandOutput = "FPS:" + FPSMeter.FPS + " Press ESC To Continue";
+                    CursorX = 0;
+                    virtualGraphics.DrawFilledRectangle(0x5B264D, CursorX, CursorY, Width, 16);
+                    Write("FPS:" + FPSMeter.FPS + " Press ESC To Continue");
                     break;
-                default:
-                    ContinuableCommandOutput = "";
-                    break;
             }
 
-
-            if (W < 30)
-            {
-                aContent = Content + ContinuableCommandOutput + "_";
-            }
-            else
-            {
-                aContent = Content + ContinuableCommandOutput;
-            }
-
-            string l = "";
-            int i = 0;
-            foreach (var v in aContent)
-            {
-                if (v != '\n')
-                {
-                    i++;
-                    l += v;
-                }
-                else
-                {
-                    s.Add(l);
-                    i = 0;
-                    l = "";
-
-                    if (v != '\n')
-                    {
-                        l += v;
-                    }
-                }
-            }
-            s.Add(l);
-
-
-            if (s.Count > MaxLine)
-            {
-                while (s.Count != MaxLine)
-                {
-                    s.RemoveAt(0);
-                }
-            }
-
-            int k = 0;
-            foreach (var v in s)
-            {
-                System.Graphics.DrawBitFontString("ArialCustomCharset16", 0xFFFFFFFF, v, X + 0, Y + k * ASCII.FontHeight);
-                k++;
-            }
+            System.Graphics.DrawImageASM(virtualGraphics.bitmap, X, Y);
         }
     }
 }
